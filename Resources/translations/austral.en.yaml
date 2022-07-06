@@ -1,0 +1,9 @@
+configuration:
+  check:
+    modules:
+      notify:
+        title:                                  Notify bundle
+        async:
+          entitled:                             Send asynchrone ?
+        mercure:
+          entitled:                             Mercure path

@@ -1,0 +1,36 @@
+{
+  "name":                                     "austral/notify-bundle",
+  "type":                                     "symfony-bundle",
+  "description":                              "Austral notify bundle",
+  "keywords":                                 ["Austral", "Notify"],
+  "license":                                  "MIT",
+  "homepage":                                 "https://austral.dev",
+  "version":                                  "3.0",
+  "authors": [
+    {
+      "name":                                 "Matthieu Beurel",
+      "email":                                "matthieu@austral.dev",
+      "role":                                 "Developer"
+    }
+  ],
+  "require": {
+    "php":                                    "^7.4 || ^8.0",
+
+    "austral/tools-bundle":                   "^3.0",
+    "austral/email-bundle":                   "^3.0",
+
+    "symfony/mercure":                        "v0.6.1",
+    "symfony/mercure-bundle":                 "v0.3.4",
+
+    "lcobucci/jwt":                           "3.4.5"
+  },
+  "require-dev": {
+  },
+  "config": {
+    "sort-packages":                          true
+  },
+  "autoload": {
+    "psr-4": { "Austral\\NotifyBundle\\": "" }
+  },
+  "minimum-stability":                        "dev"
+}

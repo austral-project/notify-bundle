@@ -1,0 +1,4 @@
+parameters:
+
+  austral.resolve.messenger.routing.notify:
+    'Austral\NotifyBundle\Message\MercureMessage':    [ async ]

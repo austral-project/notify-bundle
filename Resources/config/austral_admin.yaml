@@ -1,0 +1,14 @@
+parameters:
+
+services:
+  _defaults:
+    autowire:       true
+    autoconfigure:  true
+    public:         true
+
+##### Listener
+  austral.notify.configuration_checker.listener:
+    class:          Austral\NotifyBundle\Listener\ConfigurationCheckerListener
+    arguments:      ["@austral.notify.config"]
+    tags:
+      - { name: kernel.event_listener, event: "austral.event.admin.configuration_checker", method: configurationChecker, priority: 2048  }

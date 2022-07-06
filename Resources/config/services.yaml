@@ -1,0 +1,46 @@
+services:
+  _defaults:
+    autowire:      true
+    autoconfigure: true
+    public:        true
+
+
+##### Listener
+  austral.notify.mercure.listener:
+    class:          Austral\NotifyBundle\Listener\MercureListener
+    arguments:      ["@austral.notify.mercure"]
+    tags:
+      - { name: kernel.event_listener, event: "kernel.response", method: onResponse  }
+
+##### Push Notification
+  austral.notify.push:
+    class:          Austral\NotifyBundle\Notification\Push
+    arguments:      [ "@austral.email_sender", "@austral.notify.mercure" ]
+
+##### Messenger
+  austral.notify.message_handler.mercure:
+    class:          Austral\NotifyBundle\Message\MercureMessageHandler
+    arguments:      [ "@austral.notify.mercure" ]
+    tags:
+      - name:       messenger.message_handler
+        handles:    Austral\NotifyBundle\Message\MercureMessage
+
+##### Parameters #####
+  austral.notify.config:
+    class:          Austral\NotifyBundle\Configuration\NotifyConfiguration
+    arguments:      ["%austral_notify%"]
+
+##### Mercure service
+  austral.notify.mercure:
+    class:          Austral\NotifyBundle\Mercure\Mercure
+    arguments:
+      - "@mercure.hub.default"
+      - "@austral.notify.mercure.cookie"
+      - "@austral.notify.config"
+      - "@austral.tools.services.status-checker"
+      - "@security.token_storage"
+      - "@?messenger.default_bus"
+
+  austral.notify.mercure.cookie:
+    class:          Austral\NotifyBundle\Mercure\Cookie
+    arguments:      [ "@request_stack"]

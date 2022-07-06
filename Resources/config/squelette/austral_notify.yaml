@@ -1,0 +1,5 @@
+austral_notify:
+  async:                    true
+  mercure:
+    domain:                 "austral.dev"
+

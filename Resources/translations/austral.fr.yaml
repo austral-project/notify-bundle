@@ -1,0 +1,9 @@
+configuration:
+  check:
+    modules:
+      notify:
+        title:                                  Notify bundle
+        async:
+          entitled:                             Envoi en asynchrone ?
+        mercure:
+          entitled:                             Chemin du service Mercure
