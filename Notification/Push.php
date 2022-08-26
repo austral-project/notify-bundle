@@ -71,7 +71,7 @@ class Push
   protected function createResolverByType(string $type): OptionsResolver
   {
     $resolver = new OptionsResolver();
-    if($type == "mail")
+    if($type === self::TYPE_MAIL)
     {
       $resolver->setDefaults(array(
           "email_template_keyname"  =>  null,
@@ -90,7 +90,7 @@ class Push
       $resolver->setAllowedTypes('object', array('object', "null"));
       $resolver->setAllowedTypes('vars', array('array', "null"));
     }
-    elseif($type == "mercure")
+    elseif($type === self::TYPE_MERCURE)
     {
       $resolver->setDefaults(array(
           "topics"  => null,
