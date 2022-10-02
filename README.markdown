@@ -16,7 +16,7 @@ composer require austral/notify-bundle
 ```
 
 ## Documentation
-See documentation on the [official website](https://austral.dev/bundles/notify-bundle)
+See documentation on the [official website](https://austral.dev/en/bundles/notify-bundle)
 
 ## Commit Messages
 
