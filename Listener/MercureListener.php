@@ -42,8 +42,11 @@ class MercureListener
    */
   public function onResponse(ResponseEvent $responseEvent)
   {
-    $responseEvent->getResponse()->headers->setCookie($this->mercure->generateCookie());
-    $responseEvent->getResponse()->headers->set("austral-tab-uuid", $this->mercure->getUserTabId());
+    if($this->mercure->getEnabled())
+    {
+      $responseEvent->getResponse()->headers->setCookie($this->mercure->generateCookie());
+      $responseEvent->getResponse()->headers->set("austral-tab-uuid", $this->mercure->getUserTabId());
+    }
   }
 
 

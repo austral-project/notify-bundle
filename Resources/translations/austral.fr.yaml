@@ -5,5 +5,7 @@ configuration:
         title:                                  Notify bundle
         async:
           entitled:                             Envoi en asynchrone ?
+        enabled:
+          entitled:                             Status
         mercure:
           entitled:                             Chemin du service Mercure

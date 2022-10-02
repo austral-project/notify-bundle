@@ -44,6 +44,11 @@ class Mercure
   protected ?string $userTabId = null;
 
   /**
+   * @var bool
+   */
+  protected bool $enabled;
+
+  /**
    * @var Cookie
    */
   protected Cookie $cookie;
@@ -117,6 +122,7 @@ class Mercure
     $this->notifyConfiguration = $notifyConfiguration;
     $this->bus = $bus;
     $this->mercureDomain = $this->notifyConfiguration->get('mercure.domain');
+    $this->enabled = (bool) $this->notifyConfiguration->get('mercure.enabled');
     $this->user = $token->getToken() ? $token->getToken()->getUser() : null;
     $this->httpClient = HttpClient::create();
     if($this->user instanceof UserInterface) {
@@ -157,28 +163,31 @@ class Mercure
    */
   public function publish($topics, array $data = array(), bool $private = false, string $id = null, string $type = null, int $retry = null): Mercure
   {
-    if($this->asyncServiceStart && $this->bus && (($this->notifyConfiguration->get("async") && $this->async == "default") || $this->async === true))
+    if($this->enabled)
     {
-      $this->bus->dispatch(new MercureMessage(
-          $topics,
-          $data,
+      if($this->asyncServiceStart && $this->bus && (($this->notifyConfiguration->get("async") && $this->async == "default") || $this->async === true))
+      {
+        $this->bus->dispatch(new MercureMessage(
+            $topics,
+            $data,
+            $private,
+            $id,
+            $type,
+            $retry
+          )
+        );
+      }
+      else
+      {
+        $this->hub->publish(new Update(
+          $this->initTopics($topics),
+          json_encode($data),
           $private,
           $id,
           $type,
           $retry
-        )
-      );
-    }
-    else
-    {
-      $this->hub->publish(new Update(
-        $this->initTopics($topics),
-        json_encode($data),
-        $private,
-        $id,
-        $type,
-        $retry
-      ));
+        ));
+      }
     }
     return $this;
   }
@@ -232,7 +241,6 @@ class Mercure
       }
     }
     catch(\Exception $e) {
-      dd($e);
     }
     return $listSubscribesByTopics;
   }
@@ -270,6 +278,25 @@ class Mercure
   public function setAsync($async): Mercure
   {
     $this->async = $async !== null ? $async : "default";
+    return $this;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getEnabled(): bool
+  {
+    return $this->enabled;
+  }
+
+  /**
+   * @param bool $enabled
+   *
+   * @return $this
+   */
+  public function setEnabled(bool $enabled): Mercure
+  {
+    $this->enabled = $enabled;
     return $this;
   }
 
