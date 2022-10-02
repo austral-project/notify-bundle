@@ -5,5 +5,7 @@ configuration:
         title:                                  Notify bundle
         async:
           entitled:                             Send asynchrone ?
+        enabled:
+          entitled:                             Status
         mercure:
           entitled:                             Mercure path

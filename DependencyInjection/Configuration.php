@@ -33,6 +33,7 @@ class Configuration implements ConfigurationInterface
         ->arrayNode('mercure')
           ->addDefaultsIfNotSet()
           ->children()
+            ->booleanNode("enabled")->end()
             ->scalarNode("domain")->end()
           ->end()
         ->end()
@@ -49,6 +50,7 @@ class Configuration implements ConfigurationInterface
     return array(
       "async"             =>  true,
       "mercure"           =>  array(
+        "enabled"           =>  true,
         'domain'            =>  "austral.dev"
       )
     );

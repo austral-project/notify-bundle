@@ -60,6 +60,15 @@ class ConfigurationCheckerListener
       ->setStatus($this->notifyConfiguration->get('async') ? ConfigurationCheckerValue::$STATUS_SUCCESS : ConfigurationCheckerValue::$STATUS_NONE)
       ->setValue($this->notifyConfiguration->get('async') ? "configuration.check.choices.yes" : "configuration.check.choices.no");
 
+    $configurationCheckerValue = new ConfigurationCheckerValue("enabled", $configurationCheckerNotify);
+    $configurationCheckerValue->setName("configuration.check.modules.notify.enabled.entitled")
+      ->setIsTranslatable(true)
+      ->setIsTranslatableValue(true)
+      ->setType(ConfigurationCheckerValue::$TYPE_CHECKED)
+      ->setStatus($this->notifyConfiguration->get('mercure.enabled') ? ConfigurationCheckerValue::$STATUS_SUCCESS : ConfigurationCheckerValue::$STATUS_NONE)
+      ->setValue($this->notifyConfiguration->get('mercure.enabled') ? "configuration.check.choices.yes" : "configuration.check.choices.no");
+
+
     $configurationCheckerValue = new ConfigurationCheckerValue("mercure", $configurationCheckerNotify);
     $configurationCheckerValue->setName("configuration.check.modules.notify.mercure.entitled")
       ->setIsTranslatable(true)
