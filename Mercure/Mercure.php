@@ -122,6 +122,7 @@ class Mercure
     $this->notifyConfiguration = $notifyConfiguration;
     $this->bus = $bus;
     $this->mercureDomain = $this->notifyConfiguration->get('mercure.domain');
+    $this->enabled = $this->notifyConfiguration->get('mercure.enabled');
     $this->user = $token->getToken() ? $token->getToken()->getUser() : null;
     $this->httpClient = HttpClient::create();
     if($this->user instanceof UserInterface) {
