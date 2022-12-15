@@ -21,7 +21,7 @@ use Symfony\Component\Mercure\Exception\RuntimeException;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\UsageTrackingTokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use function Symfony\Component\String\u;
@@ -110,12 +110,12 @@ class Mercure
    * @param Cookie $cookie
    * @param NotifyConfiguration $notifyConfiguration
    * @param ServicesStatusChecker $servicesStatusChecker
-   * @param UsageTrackingTokenStorage $token
+   * @param TokenStorageInterface $token
    * @param MessageBusInterface|null $bus
    *
    * @throws \Exception
    */
-  public function __construct(HubInterface $hub, Cookie $cookie, NotifyConfiguration $notifyConfiguration, ServicesStatusChecker $servicesStatusChecker, UsageTrackingTokenStorage $token, ?MessageBusInterface $bus)
+  public function __construct(HubInterface $hub, Cookie $cookie, NotifyConfiguration $notifyConfiguration, ServicesStatusChecker $servicesStatusChecker, TokenStorageInterface $token, ?MessageBusInterface $bus)
   {
     $this->hub = $hub;
     $this->cookie = $cookie;
