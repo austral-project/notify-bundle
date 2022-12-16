@@ -1,6 +1,9 @@
 Changelog
 =========
 
+### Version 3.1.1 (2022-12-16)
+* Fix deprecated functions for security compatibility from symfony 5.4
+
 ### Version 3.1.0 (2022-09-17)
 * Updated bundles version to 3.1
 * Used a Push const for check push type
