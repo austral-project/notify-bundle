@@ -13,11 +13,13 @@ services:
       - { name: kernel.event_listener, event: "kernel.response", method: onResponse  }
 
 ##### Push Notification
+  Austral\NotifyBundle\Notification\Push: "@austral.notify.push"
   austral.notify.push:
     class:          Austral\NotifyBundle\Notification\Push
     arguments:      [ "@austral.email_sender", "@austral.notify.mercure" ]
 
 ##### Messenger
+  Austral\NotifyBundle\Message\MercureMessageHandler: "@austral.notify.message_handler.mercure"
   austral.notify.message_handler.mercure:
     class:          Austral\NotifyBundle\Message\MercureMessageHandler
     arguments:      [ "@austral.notify.mercure" ]
@@ -26,11 +28,13 @@ services:
         handles:    Austral\NotifyBundle\Message\MercureMessage
 
 ##### Parameters #####
+  Austral\NotifyBundle\Configuration\NotifyConfiguration: "@austral.notify.config"
   austral.notify.config:
     class:          Austral\NotifyBundle\Configuration\NotifyConfiguration
     arguments:      ["%austral_notify%"]
 
 ##### Mercure service
+  Austral\NotifyBundle\Mercure\Mercure: "@austral.notify.mercure"
   austral.notify.mercure:
     class:          Austral\NotifyBundle\Mercure\Mercure
     arguments:
@@ -41,6 +45,7 @@ services:
       - "@security.token_storage"
       - "@?messenger.default_bus"
 
+  Austral\NotifyBundle\Mercure\Cookie:  "@austral.notify.mercure.cookie"
   austral.notify.mercure.cookie:
     class:          Austral\NotifyBundle\Mercure\Cookie
     arguments:      [ "@request_stack"]
