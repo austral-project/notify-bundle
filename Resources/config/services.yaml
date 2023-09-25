@@ -6,6 +6,7 @@ services:
 
 
 ##### Listener
+  Austral\NotifyBundle\Listener\MercureListener:  "@austral.notify.mercure.listener"
   austral.notify.mercure.listener:
     class:          Austral\NotifyBundle\Listener\MercureListener
     arguments:      ["@austral.notify.mercure"]
