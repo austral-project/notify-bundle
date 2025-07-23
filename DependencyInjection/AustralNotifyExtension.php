@@ -30,7 +30,7 @@ class AustralNotifyExtension extends Extension implements PrependExtensionInterf
    * {@inheritdoc}
    * @throws Exception
    */
-  public function load(array $configs, ContainerBuilder $container)
+  public function load(array $configs, ContainerBuilder $container): void
   {
     $configuration = new Configuration();
     $config = $this->processConfiguration($configuration, $configs);
@@ -51,7 +51,7 @@ class AustralNotifyExtension extends Extension implements PrependExtensionInterf
    *
    * @throws Exception
    */
-  public function prepend(ContainerBuilder $container)
+  public function prepend(ContainerBuilder $container): void
   {
     if (interface_exists(MessageBusInterface::class)) {
       $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -65,7 +65,7 @@ class AustralNotifyExtension extends Extension implements PrependExtensionInterf
    *
    * @throws \Exception
    */
-  protected function loadConfigToAustralFormBundle(ContainerBuilder $container, YamlFileLoader $loader)
+  protected function loadConfigToAustralFormBundle(ContainerBuilder $container, YamlFileLoader $loader): void
   {
     $bundlesConfigPath = $container->getParameter("kernel.project_dir")."/config/bundles.php";
     if(file_exists($bundlesConfigPath))
