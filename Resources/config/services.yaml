@@ -42,7 +42,7 @@ services:
       - "@mercure.hub.default"
       - "@austral.notify.mercure.cookie"
       - "@austral.notify.config"
-      - "@austral.tools.services.status-checker"
+      - "@austral.tools.status-checker"
       - "@security.token_storage"
       - "@?messenger.default_bus"
 
